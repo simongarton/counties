@@ -1,18 +1,30 @@
-# Getting Started
+## Building and running the application
 
-### Reference Documentation
-For further reference, please consider the following sections:
+To build this application, start the terminal, move into the root directory, and type :
 
-* [Official Apache Maven documentation](https://maven.apache.org/guides/index.html)
-* [Spring Boot Maven Plugin Reference Guide](https://docs.spring.io/spring-boot/docs/2.3.3.RELEASE/maven-plugin/reference/html/)
-* [Create an OCI image](https://docs.spring.io/spring-boot/docs/2.3.3.RELEASE/maven-plugin/reference/html/#build-image)
-* [Spring Boot DevTools](https://docs.spring.io/spring-boot/docs/2.3.3.RELEASE/reference/htmlsingle/#using-boot-devtools)
-* [Spring Web](https://docs.spring.io/spring-boot/docs/2.3.3.RELEASE/reference/htmlsingle/#boot-features-developing-web-applications)
+mvn package 
 
-### Guides
-The following guides illustrate how to use some features concretely:
+This will produce a JAR file, and the terminal messages will tell you where it is : in my case, it's at :
 
-* [Building a RESTful Web Service](https://spring.io/guides/gs/rest-service/)
-* [Serving Web Content with Spring MVC](https://spring.io/guides/gs/serving-web-content/)
-* [Building REST services with Spring](https://spring.io/guides/tutorials/bookmarks/)
+/Users/simongarton/projects/java/tests/counties/target/register-0.0.1-SNAPSHOT.jar
+
+Now type :
+
+java -jar /Users/simongarton/projects/java/tests/counties/target/register-0.0.1-SNAPSHOT.jar
+
+and then in a browser or a tool such as Postman, navigate to :
+
+http://localhost:8080/users?surname=Baggins
+
+## API endpoints
+
+Use the swagger documentation available at :
+
+http://localhost:8080/swagger-ui.html
+http://localhost:8080/v2/api-docs
+
+## Libraries
+
+Lombok : used to generate boilerplate code, such as getters and setters. Your codebase can then be much smaller, reflecting just the business logic.
+SpringFox : used for Swagger API documentation.
 
