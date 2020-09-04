@@ -9,11 +9,11 @@ public interface UserService {
 
     List<UserDto> findUsers(String surname);
 
-    List<UserDto> getAll();
+    List<UserDto> getUsers();
 
     void delete(long id);
 
     Optional<UserDto> get(long id);
 
-    long save(UserDto user);
+    UserDto save(UserDto user);
 }
