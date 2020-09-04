@@ -1,11 +1,13 @@
 package com.simongarton.register.controllers;
 
+import com.simongarton.register.exceptions.NotFoundException;
 import com.simongarton.register.services.UserService;
 import com.simongarton.register.services.dto.UserDto;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class UserController {
@@ -27,7 +29,12 @@ public class UserController {
 
     @RequestMapping(value = "/users/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     private UserDto getUser(@PathVariable("id") long id) {
-        return userService.get(id).orElse(null);
+        Optional<UserDto> optionalUserDto = userService.get(id);
+        if (optionalUserDto.isPresent()) {
+            return optionalUserDto.get();
+        } else {
+            throw new NotFoundException("User " + id + " + not found.");
+        }
     }
 
     @RequestMapping(value = "/users/{id}", method = RequestMethod.DELETE)

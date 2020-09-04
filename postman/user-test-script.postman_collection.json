@@ -1,0 +1,304 @@
+{
+	"info": {
+		"_postman_id": "8cf13738-354c-4c27-b29a-02e73d6e1225",
+		"name": "Counties",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "all users",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d06b79c2-fd18-4170-9bdb-600d2bcd14ce",
+						"exec": [
+							"pm.test(\"Status\", function () {",
+							"  pm.response.to.have.status(200);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/users",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "find users",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5b47f36d-62ee-46c1-8b26-10854ef74e69",
+						"exec": [
+							"pm.test(\"Status\", function () {",
+							"  pm.response.to.have.status(200);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/users?surname=Baggins",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users"
+					],
+					"query": [
+						{
+							"key": "surname",
+							"value": "Baggins"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get 1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4a7280e7-e803-4385-b38c-8fcc657d2d59",
+						"exec": [
+							"pm.test(\"Status\", function () {",
+							"  pm.response.to.have.status(200);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/users/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c07b9960-133b-4ebb-a606-3db72fed674c",
+						"exec": [
+							"pm.test(\"Status\", function () {",
+							"  pm.response.to.have.status(200);",
+							"});",
+							"",
+							"var jsonData = JSON.parse(responseBody);",
+							"postman.setEnvironmentVariable(\"userId\", jsonData.id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"firstName\":\"Gandalf\",\n    \"surname\":\"The Grey\",\n    \"email\":\"g@hobbiton.com\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/users",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "015c118b-215a-4945-ad26-7c60b180e380",
+						"exec": [
+							"pm.test(\"Status\", function () {",
+							"  pm.response.to.have.status(200);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\":{{userId}},\n    \"firstName\":\"Radagast\",\n    \"surname\":\"The Brown\",\n    \"email\":\"birdfriend@middlearth.com\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/users",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete 1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "1a8c0e72-891d-4338-9ba9-a29ff003c151",
+						"exec": [
+							"pm.test(\"Status\", function () {",
+							"  pm.response.to.have.status(200);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/users/{{userId}}",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"{{userId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete 1 should fail",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "53d69b62-e8d5-4aa1-bbc7-2035e8541c26",
+						"exec": [
+							"pm.test(\"Status\", function () {",
+							"  pm.response.to.have.status(404);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/users/{{userId}}",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"{{userId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get should fail",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "708291ea-b483-494c-a5d5-ca6fca018df6",
+						"exec": [
+							"pm.test(\"Status\", function () {",
+							"  pm.response.to.have.status(404);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/users/{{userId}}",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"{{userId}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
