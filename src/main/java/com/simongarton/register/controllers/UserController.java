@@ -19,7 +19,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "/users", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<UserDto> getAllUsers(@RequestParam(value = "surname", required = false) String surname) {
+    public List<UserDto> getUsers(@RequestParam(value = "surname", required = false) String surname) {
         if (surname == null) {
             return userService.getUsers();
         } else {
